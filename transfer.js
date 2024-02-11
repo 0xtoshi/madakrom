@@ -1,12 +1,12 @@
 import fs from "fs";
 import { TransferWithSigner } from "./helper/transfer.js";
 import { pickRandom } from "./helper/randomize.js";
-
+import { TRANSFER_PER_REQUEST } from "./config.js";
 const accountList = fs.readFileSync("./account.txt", "utf-8").split("\n");
 
 while (true) {
   await new Promise((r) => setTimeout(r, 3000));
-  let random = pickRandom(accountList, 20);
+  let random = pickRandom(accountList, TRANSFER_PER_REQUEST);
   var accountArray = random.filter(function (el) {
     return el != "" && el !== undefined;
   });
