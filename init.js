@@ -7,9 +7,6 @@ console.log(`Start Deploying AA Wallet`);
 let txDeploy = await deploy();
 if (txDeploy.success) {
   console.log(`Deploying OpenZapeliin AA ClassHash`);
-  fs.writeFileSync("./AA.json", JSON.stringify(txDeploy.data));
-  console.log(`Writing Classhash in file AA.json`);
-  console.log(`Success`);
   console.log(txDeploy.data);
 
   console.log(`Testing Generate Account`);
