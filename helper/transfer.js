@@ -43,6 +43,6 @@ export async function TransferWithSigner(address, privateKey) {
     let txhash = await signer.execute(result, undefined);
     return txhash.transaction_hash;
   } catch (err) {
-    console.log("Transfer Failed");
+    //console.log("Transfer Failed");
   }
 }

@@ -22,8 +22,8 @@ while (true) {
 
   try {
     let data = await Promise.all(tx);
-    console.log(data);
+    //console.log(data);
   } catch (err) {
-    console.log(`Error Boskuuuu`);
+    //console.log(`Error Boskuuuu`);
   }
 }
