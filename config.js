@@ -13,4 +13,6 @@ export const ACCOUNT = new Account(
   "1"
 );
 
+export const CLASS_HASH =
+  "0x4c6d6cf894f8bc96bb9c525e6853e5483177841f7388f74a46cfda6f028c755";
 export const TRANSFER_PER_REQUEST = 20; // Down jika terlalu banyak

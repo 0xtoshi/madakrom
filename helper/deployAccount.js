@@ -1,24 +1,13 @@
-import {
-  Account,
-  constants,
-  ec,
-  json,
-  stark,
-  Provider,
-  hash,
-  CallData,
-  Contract,
-} from "starknet";
+import { Account, ec, stark, hash, CallData } from "starknet";
 import fs from "fs";
 import path from "path";
-import { MADARA_PROVIDER } from "../config.js";
-const config = JSON.parse(fs.readFileSync(path.join("./AA.json"), "utf-8"));
+import { MADARA_PROVIDER, CLASS_HASH } from "../config.js";
 
 export async function GenerateAccount() {
   const privateKey = stark.randomAddress();
   const starkKeyPub = ec.starkCurve.getStarkKey(privateKey);
 
-  const OZaccountClassHash = config.classHash;
+  const OZaccountClassHash = CLASS_HASH;
   const OZaccountConstructorCallData = CallData.compile({
     publicKey: starkKeyPub,
   });
@@ -43,7 +32,7 @@ export async function DeployAccount(address, privateKey, publicKey) {
     publicKey: publicKey,
   });
   const { transaction_hash, contract_address } = await OZaccount.deployAccount({
-    classHash: config.classHash,
+    classHash: CLASS_HASH,
     constructorCalldata: OZaccountConstructorCallData,
     addressSalt: publicKey,
   });
