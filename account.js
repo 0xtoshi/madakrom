@@ -18,6 +18,7 @@ while (true) {
 
     let deployAccount = await GenerateAccount();
 
+    console.log(deployAccount);
     let tx = [];
     for (let list of accountArray) {
       let signer = list.split(",");
@@ -36,12 +37,13 @@ while (true) {
     let data = await Promise.all(tx);
     if (data) {
       //console.log(`Deploying Account`);
-      await DeployAccount(
+      let deploy = await DeployAccount(
         deployAccount.address,
         deployAccount.privateKey,
         deployAccount.publicKey
       );
 
+      console.log(deploy);
       //console.log(deployAA);
 
       fs.appendFileSync(
