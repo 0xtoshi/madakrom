@@ -23,9 +23,10 @@ while (true) {
       let privateKey = signer[1];
 
       let deployAccount = await GenerateAccount();
+      accounts.push(deployAccount);
 
-      console.log(deployAccount.address);
-      /*
+      // console.log(deployAccount.address);
+
       tx.push(
         TransferWithSignerAndreceiver(
           address,
@@ -33,25 +34,23 @@ while (true) {
           deployAccount.address
         )
       );
-      await new Promise((r) => setTimeout(r, 20000));
-      let deploy = await DeployAccount(
-        deployAccount.address,
-        deployAccount.privateKey,
-        deployAccount.publicKey
-      );
-
-      console.log(deploy);
-      //console.log(deployAA);
-
-      fs.appendFileSync(
-        "./account.txt",
-        `${deployAccount.address},${deployAccount.privateKey}\n`
-      );
-      */
     }
 
-    //    let data = await Promise.all(tx);
+    let data = await Promise.all(tx);
+    console.log(data);
 
+    if (data) {
+      let x = [];
+      for (let acc of accounts) {
+        let deploy = DeployAccount(acc.address, acc.privateKey, acc.publicKey);
+
+        x.push(deploy);
+      }
+
+      let d = await Promise.all(x);
+
+      console.log(d);
+    }
     //console.log(data);
   } catch (err) {
     //console.log(`Error Boskuuuu`);
