@@ -46,3 +46,27 @@ export async function TransferWithSigner(address, privateKey) {
     //console.log("Transfer Failed");
   }
 }
+
+export async function TransferWithSignerAndreceiver(
+  address,
+  privateKey,
+  receiver
+) {
+  try {
+    const contract = new Contract(ERC20.abi, CONTRACT_ADDRESS, MADARA_PROVIDER);
+    let result = contract.populate("transfer", {
+      recipient: receiver,
+      amount: {
+        low: 1e5,
+        high: 0,
+      },
+    });
+
+    const signer = new Account(MADARA_PROVIDER, address, privateKey, "1");
+
+    let txhash = await signer.execute(result, undefined);
+    return txhash.transaction_hash;
+  } catch (err) {
+    //console.log("Transfer Failed");
+  }
+}
