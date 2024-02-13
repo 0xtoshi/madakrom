@@ -16,12 +16,16 @@ while (true) {
       return el != "" && el !== undefined;
     });
     let tx = [];
+    let accounts = [];
     for (let list of accountArray) {
       let signer = list.split(",");
       let address = signer[0];
       let privateKey = signer[1];
 
       let deployAccount = await GenerateAccount();
+
+      console.log(deployAccount.address);
+      /*
       tx.push(
         TransferWithSignerAndreceiver(
           address,
@@ -29,7 +33,6 @@ while (true) {
           deployAccount.address
         )
       );
-
       await new Promise((r) => setTimeout(r, 20000));
       let deploy = await DeployAccount(
         deployAccount.address,
@@ -44,6 +47,7 @@ while (true) {
         "./account.txt",
         `${deployAccount.address},${deployAccount.privateKey}\n`
       );
+      */
     }
 
     //    let data = await Promise.all(tx);
