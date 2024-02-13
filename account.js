@@ -46,7 +46,7 @@ while (true) {
       );
     }
 
-    let data = await Promise.all(tx);
+    //    let data = await Promise.all(tx);
 
     //console.log(data);
   } catch (err) {
