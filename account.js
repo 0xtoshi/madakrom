@@ -15,16 +15,13 @@ while (true) {
     var accountArray = random.filter(function (el) {
       return el != "" && el !== undefined;
     });
-
-    let deployAccount = await GenerateAccount();
-
-    console.log(deployAccount);
     let tx = [];
     for (let list of accountArray) {
       let signer = list.split(",");
       let address = signer[0];
       let privateKey = signer[1];
 
+      let deployAccount = await GenerateAccount();
       tx.push(
         TransferWithSignerAndreceiver(
           address,
@@ -32,11 +29,8 @@ while (true) {
           deployAccount.address
         )
       );
-    }
 
-    let data = await Promise.all(tx);
-    if (data) {
-      //console.log(`Deploying Account`);
+      await new Promise((r) => setTimeout(r, 20000));
       let deploy = await DeployAccount(
         deployAccount.address,
         deployAccount.privateKey,
@@ -51,6 +45,9 @@ while (true) {
         `${deployAccount.address},${deployAccount.privateKey}\n`
       );
     }
+
+    let data = await Promise.all(tx);
+
     //console.log(data);
   } catch (err) {
     //console.log(`Error Boskuuuu`);
