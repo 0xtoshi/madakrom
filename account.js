@@ -47,7 +47,7 @@ while (true) {
         x.push(deploy);
       }
 
-      let d = await Promise.all(x);
+      await Promise.all(x);
 
       console.log(d);
     }
