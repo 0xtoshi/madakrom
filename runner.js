@@ -13,6 +13,7 @@ while (true) {
     await TransferTx(deployAccount.address);
     //console.log(transferTx);
 
+    await new Promise((r) => setTimeout(r, 4000)); # Waiting Block Confirmation then DEPLOY
     //console.log(`Deploying Account`);
     await DeployAccount(
       deployAccount.address,
